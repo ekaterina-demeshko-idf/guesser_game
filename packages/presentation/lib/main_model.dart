@@ -1,9 +1,11 @@
 import 'dart:math';
 import 'package:domain/usecase/check_number_usecase.dart';
+import 'package:domain/usecase/generate_number_usecase.dart';
 import 'package:flutter/material.dart';
 
 class MainModel extends ChangeNotifier {
   final checkNumberUseCase = CheckNumberUseCase();
+  final generateNumberUseCase = GenerateNumberUsecase();
   bool? isGuessed;
   final myController = TextEditingController();
   Random random = Random();
@@ -12,8 +14,7 @@ class MainModel extends ChangeNotifier {
   bool isButtonDisabled = true;
 
   void generateRandomNumber1() {
-    Random random = Random();
-    randomNumber1 = random.nextInt(9) + 1;
+    randomNumber1 = generateNumberUseCase();
     notifyListeners();
   }
 
