@@ -10,7 +10,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
@@ -25,8 +24,7 @@ class _MyAppState extends State<MyApp> {
         primarySwatch: Colors.deepPurple,
       ),
       home: ChangeNotifierProvider(
-          create: (_) => MainModel(),
-          child: const MyHomePage()),
+          create: (_) => MainModel(), child: const MyHomePage()),
     );
   }
 }
@@ -77,25 +75,25 @@ class MyHomePage extends StatelessWidget {
                       onPressed: model.isButtonDisabled
                           ? null
                           : () {
-                        String result = '';
-                        if (model.checkAttempt(model.counter)) {
-                          model.checkNumber()
-                              ? result = 'You won!'
-                              : result = 'Wrong';
-                        } else {
-                          result =
-                          'You out of 3 free attempts. Please start a new game.';
-                        }
-                        showDialog(
-                          context: context,
-                          builder: (context) {
-                            return AlertDialog(
-                              content: Text(result,
-                                  style: TextStyle(fontSize: 30)),
-                            );
-                          },
-                        );
-                      },
+                              String result = '';
+                              if (model.checkAttempt(model.counter)) {
+                                model.checkNumber()
+                                    ? result = 'You won!'
+                                    : result = 'Wrong';
+                              } else {
+                                result =
+                                    'You out of 3 free attempts. Please start a new game.';
+                              }
+                              showDialog(
+                                context: context,
+                                builder: (context) {
+                                  return AlertDialog(
+                                    content: Text(result,
+                                        style: TextStyle(fontSize: 30)),
+                                  );
+                                },
+                              );
+                            },
                       child: Text('Try', style: TextStyle(fontSize: 20))),
                   SizedBox(
                     width: 30,
@@ -105,7 +103,7 @@ class MyHomePage extends StatelessWidget {
                         model.newGame();
                       },
                       child: Text('New Game', style: TextStyle(fontSize: 20))),
-                 ],
+                ],
               ),
             ],
           ),

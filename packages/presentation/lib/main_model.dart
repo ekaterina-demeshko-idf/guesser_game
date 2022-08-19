@@ -1,7 +1,9 @@
 import 'dart:math';
+import 'package:domain/usecase/check_number_usecase.dart';
 import 'package:flutter/material.dart';
 
 class MainModel extends ChangeNotifier {
+  final checkNumberUseCase = CheckNumberUseCase();
   bool? isGuessed;
   final myController = TextEditingController();
   Random random = Random();
@@ -16,25 +18,26 @@ class MainModel extends ChangeNotifier {
   }
 
   bool checkAttempt(count) {
-    if(checkNumber()) {
+    if (checkNumber()) {
       isButtonDisabled = true;
       notifyListeners();
     }
-    if(count > 4) {
+    if (count > 4) {
       count = 0;
       isButtonDisabled = true;
       notifyListeners();
       return false;
-    }
-    else {
+    } else {
       return true;
     }
   }
 
   bool checkNumber() {
     final input = int.parse(myController.text);
+    final params = Params( guessNumber: input, randomNumber: randomNumber1);
+    final isGuessed = checkNumberUseCase(params);
     counter++;
-    return input == randomNumber1;
+    return isGuessed;
   }
 
   void newGame() {
