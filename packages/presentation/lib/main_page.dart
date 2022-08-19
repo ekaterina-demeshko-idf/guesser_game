@@ -102,9 +102,7 @@ class MyHomePage extends StatelessWidget {
                   ),
                   ElevatedButton(
                       onPressed: () {
-                        model.generateRandomNumber1();
-                        model.counter = 0;
-                        model.isButtonDisabled = false;
+                        model.newGame();
                       },
                       child: Text('New Game', style: TextStyle(fontSize: 20))),
                  ],

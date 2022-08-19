@@ -36,4 +36,10 @@ class MainModel extends ChangeNotifier {
     counter++;
     return input == randomNumber1;
   }
+
+  void newGame() {
+    generateRandomNumber1();
+    counter = 0;
+    isButtonDisabled = false;
+  }
 }
