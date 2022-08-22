@@ -37,7 +37,6 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final model = context.watch<MainBloc>();
     return Scaffold(
       appBar: AppBar(
         title: Text('Guess the Number'),
@@ -82,6 +81,7 @@ class MyHomePage extends StatelessWidget {
                 }
             },
             builder: (context, state) {
+              final model = context.watch<MainBloc>();
               return Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
