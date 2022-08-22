@@ -47,7 +47,6 @@ class MyHomePage extends StatelessWidget {
         child: Center(
           child: BlocConsumer<MainBloc, MainState>(
             listener: (context, state) {
-              if (state is YouWonState || state is WrongState || state is OutOfAttemptsState) {
                 if(state is YouWonState) {
                   showDialog(
                     context: context,
@@ -81,7 +80,6 @@ class MyHomePage extends StatelessWidget {
                     },
                   );
                 }
-              }
             },
             builder: (context, state) {
               return Column(
