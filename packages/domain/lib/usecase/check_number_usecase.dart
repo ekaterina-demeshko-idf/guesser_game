@@ -1,15 +1,18 @@
 import 'usecase.dart';
 
-class Params {
+class ComparedNumbers {
   final int guessNumber;
   final int randomNumber;
 
-  Params({required this.guessNumber, required this.randomNumber});
+  ComparedNumbers({
+    required this.guessNumber,
+    required this.randomNumber,
+  });
 }
 
-class CheckNumberUseCase implements UseCaseParams<Params, bool> {
+class CheckNumberUseCase implements UseCaseParams<ComparedNumbers, bool> {
   @override
-  bool call(Params params) {
+  bool call(ComparedNumbers params) {
     return params.guessNumber == params.randomNumber;
   }
 }

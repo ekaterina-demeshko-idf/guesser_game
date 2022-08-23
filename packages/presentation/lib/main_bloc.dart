@@ -12,11 +12,10 @@ class MainBloc extends Bloc<MainEvent, MainState> {
   bool? isGuessed;
   final myTextController = TextEditingController();
   int number = 1;
-  Random random = Random();
   int randomNumber = 0;
   int counter = 0;
   bool isButtonDisabled = true;
-
+  static const maxAttempts = 3;
 
   MainBloc({required checkNumberUseCase, required generateNumberUseCase})
       : super(MainInitial()) {
@@ -33,14 +32,16 @@ class MainBloc extends Bloc<MainEvent, MainState> {
   }
 
   MainState _checkNumber() {
-    number = int.parse(myTextController.text);
-    final params = Params(guessNumber: number, randomNumber: randomNumber);
+    number = int.tryParse(myTextController.text)!;
+    final params = ComparedNumbers(
+      guessNumber: number,
+      randomNumber: randomNumber,
+    );
     final isGuessed = checkNumberUseCase(params);
     counter++;
-    if (counter > 3) {
+    if (counter > maxAttempts) {
       return OutOfAttemptsState();
-    }
-    else {
+    } else {
       if (isGuessed) {
         return YouWonState();
       } else {
