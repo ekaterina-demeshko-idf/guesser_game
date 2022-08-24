@@ -6,15 +6,16 @@ import 'main_state.dart';
 import 'main_event.dart';
 
 class MainBloc extends Bloc<MainEvent, MainState> {
+  static const maxAttempts = 3;
   final checkNumberUseCase = CheckNumberUseCase();
   final generateNumberUseCase = GenerateNumberUsecase();
-  bool? isGuessed;
   final myTextController = TextEditingController();
+  bool? isGuessed;
+  bool isButtonDisabled = true;
   int number = 1;
   int randomNumber = 0;
   int counter = 0;
-  bool isButtonDisabled = true;
-  static const maxAttempts = 3;
+
 
   MainBloc({required checkNumberUseCase, required generateNumberUseCase})
       : super(MainInitial()) {
