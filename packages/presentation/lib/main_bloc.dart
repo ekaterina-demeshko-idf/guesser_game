@@ -7,8 +7,8 @@ import 'main_event.dart';
 
 class MainBloc extends Bloc<MainEvent, MainState> {
   static const maxAttempts = 3;
-  final checkNumberUseCase = CheckNumberUseCase();
-  final generateNumberUseCase = GenerateNumberUsecase();
+  final CheckNumberUseCase checkNumberUseCase;
+  final GenerateNumberUsecase generateNumberUseCase;
   final myTextController = TextEditingController();
   bool? isGuessed;
   bool isButtonDisabled = true;
@@ -17,7 +17,7 @@ class MainBloc extends Bloc<MainEvent, MainState> {
   int counter = 0;
 
 
-  MainBloc({required checkNumberUseCase, required generateNumberUseCase})
+  MainBloc({required this.checkNumberUseCase, required this.generateNumberUseCase})
       : super(MainInitial()) {
     on<CheckNumberEvent>((event, emit) {
       emit(_checkNumber());
