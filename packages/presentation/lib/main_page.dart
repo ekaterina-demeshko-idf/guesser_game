@@ -122,7 +122,6 @@ class MyHomePage extends StatelessWidget {
                     children: [
                       ElevatedButton(
                         onPressed: state is YouWonState ||
-                                state is MainInitial ||
                                 state is OutOfAttemptsState
                             ? null
                             : () {

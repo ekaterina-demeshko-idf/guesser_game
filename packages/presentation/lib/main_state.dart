@@ -2,14 +2,6 @@ abstract class MainState {}
 
 class MainInitial extends MainState {
   final int counter = 0;
-  final int randomNumber = 0;
-  final bool isButtonDisabled = true;
-
-  List<Object?> get props => [counter, randomNumber, isButtonDisabled];
-}
-
-class NewGameState extends MainState {
-  final int counter = 0;
 
   List<Object?> get props => [counter];
 }

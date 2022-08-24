@@ -13,7 +13,7 @@ class MainBloc extends Bloc<MainEvent, MainState> {
   bool? isGuessed;
   bool isButtonDisabled = true;
   int number = 1;
-  int randomNumber = 0;
+  int randomNumber = 1;
   int counter = 0;
 
 
@@ -54,6 +54,6 @@ class MainBloc extends Bloc<MainEvent, MainState> {
     generateRandomNumber();
     counter = 0;
     isButtonDisabled = false;
-    return NewGameState();
+    return MainInitial();
   }
 }
