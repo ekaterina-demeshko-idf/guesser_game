@@ -14,8 +14,9 @@ class YouWonState extends MainState {
 
 class WrongState extends MainState {
   final String result = 'Wrong!';
+  late int counter;
 
-  List<Object?> get props => [result];
+  List<Object?> get props => [result, counter];
 }
 
 class OutOfAttemptsState extends MainState {

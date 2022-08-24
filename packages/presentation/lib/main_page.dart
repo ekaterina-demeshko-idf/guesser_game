@@ -1,6 +1,5 @@
 // ignore_for_file: prefer_const_constructors
-
-import 'package:domain/usecase/check_number_usecase.dart';
+import 'package:domain/usecase/check_state_usecase.dart';
 import 'package:domain/usecase/generate_number_usecase.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -20,8 +19,8 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return BlocProvider<MainBloc>(
       create: (_) => MainBloc(
-        checkNumberUseCase: CheckNumberUseCase(),
-        generateNumberUseCase: GenerateNumberUsecase(),
+        generateNumberUseCase: GenerateNumberUseCase(),
+        checkStateUseCase: CheckStateUseCase(),
       ),
       child: MaterialApp(
         title: 'Flutter Demo',

@@ -1,14 +1,14 @@
 import 'package:bloc/bloc.dart';
-import 'package:domain/usecase/check_number_usecase.dart';
+import 'package:domain/usecase/game_state.dart';
 import 'package:domain/usecase/generate_number_usecase.dart';
+import 'package:domain/usecase/check_state_usecase.dart';
 import 'package:flutter/material.dart';
 import 'main_state.dart';
 import 'main_event.dart';
 
 class MainBloc extends Bloc<MainEvent, MainState> {
-  static const maxAttempts = 3;
-  final CheckNumberUseCase checkNumberUseCase;
-  final GenerateNumberUsecase generateNumberUseCase;
+  final GenerateNumberUseCase generateNumberUseCase;
+  final CheckStateUseCase checkStateUseCase;
   final myTextController = TextEditingController();
   bool? isGuessed;
   int number = 1;
@@ -16,7 +16,7 @@ class MainBloc extends Bloc<MainEvent, MainState> {
   int counter = 0;
 
 
-  MainBloc({required this.checkNumberUseCase, required this.generateNumberUseCase})
+  MainBloc({required this.generateNumberUseCase, required this.checkStateUseCase})
       : super(MainInitial()) {
     on<CheckNumberEvent>((event, emit) {
       emit(_checkNumber());
@@ -35,18 +35,17 @@ class MainBloc extends Bloc<MainEvent, MainState> {
     final params = ComparedNumbers(
       guessNumber: number,
       randomNumber: randomNumber,
+      counter: counter++,
     );
-    final isGuessed = checkNumberUseCase(params);
-    counter++;
-    if (counter > maxAttempts) {
+    if (checkStateUseCase(params).runtimeType == OutOfAttempts) {
       return OutOfAttemptsState();
-    } else {
-      if (isGuessed) {
-        return YouWonState();
-      } else {
-        return WrongState();
-      }
     }
+    if (checkStateUseCase(params).runtimeType == YouWon) {
+      return YouWonState();
+    }
+    return WrongState();
+
+
   }
 
   MainState _newGame() {
