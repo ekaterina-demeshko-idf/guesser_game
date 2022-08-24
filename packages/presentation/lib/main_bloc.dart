@@ -15,8 +15,8 @@ class MainBloc extends Bloc<MainEvent, MainState> {
   int randomNumber = 1;
   int counter = 0;
 
-
-  MainBloc({required this.generateNumberUseCase, required this.checkStateUseCase})
+  MainBloc(
+      {required this.generateNumberUseCase, required this.checkStateUseCase})
       : super(MainInitial()) {
     on<CheckNumberEvent>((event, emit) {
       emit(_checkNumber());
@@ -37,15 +37,13 @@ class MainBloc extends Bloc<MainEvent, MainState> {
       randomNumber: randomNumber,
       counter: counter++,
     );
-    if (checkStateUseCase(params).runtimeType == OutOfAttempts) {
+    if (checkStateUseCase(params) is OutOfAttempts) {
       return OutOfAttemptsState();
     }
-    if (checkStateUseCase(params).runtimeType == YouWon) {
+    if (checkStateUseCase(params) is YouWon) {
       return YouWonState();
     }
     return WrongState();
-
-
   }
 
   MainState _newGame() {

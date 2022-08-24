@@ -120,14 +120,14 @@ class MyHomePage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       ElevatedButton(
-                        onPressed: state is YouWonState ||
-                                state is OutOfAttemptsState
-                            ? null
-                            : () {
-                                context
-                                    .read<MainBloc>()
-                                    .add(CheckNumberEvent());
-                              },
+                        onPressed:
+                            state is YouWonState || state is OutOfAttemptsState
+                                ? null
+                                : () {
+                                    context
+                                        .read<MainBloc>()
+                                        .add(CheckNumberEvent());
+                                  },
                         child: Text(
                           'Try',
                           style: TextStyle(fontSize: 20),
