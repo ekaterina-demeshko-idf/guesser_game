@@ -11,7 +11,6 @@ class MainBloc extends Bloc<MainEvent, MainState> {
   final GenerateNumberUsecase generateNumberUseCase;
   final myTextController = TextEditingController();
   bool? isGuessed;
-  bool isButtonDisabled = true;
   int number = 1;
   int randomNumber = 1;
   int counter = 0;
@@ -53,7 +52,6 @@ class MainBloc extends Bloc<MainEvent, MainState> {
   MainState _newGame() {
     generateRandomNumber();
     counter = 0;
-    isButtonDisabled = false;
     return MainInitial();
   }
 }
