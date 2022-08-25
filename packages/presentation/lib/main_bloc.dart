@@ -37,13 +37,15 @@ class MainBloc extends Bloc<MainEvent, MainState> {
       randomNumber: randomNumber,
       counter: counter++,
     );
-    if (checkStateUseCase(params) is OutOfAttempts) {
+    final currentState = checkStateUseCase(params);
+    if (currentState is OutOfAttempts) {
       return OutOfAttemptsState();
     }
-    if (checkStateUseCase(params) is YouWon) {
+    else if (currentState is YouWon) {
       return YouWonState();
+    } else {
+      return WrongState();
     }
-    return WrongState();
   }
 
   MainState _newGame() {
