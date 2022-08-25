@@ -1,5 +1,5 @@
-class MainTile {
-  MainTile(
+class MainData {
+  MainData(
     this.randomNumber,
     this.guessNumber,
     this.counter,
@@ -11,14 +11,14 @@ class MainTile {
   int counter;
   bool isDisabled;
 
-  factory MainTile.init() => MainTile(
+  factory MainData.init() => MainData(
         1,
         0,
         1,
         true,
       );
 
-  MainTile copy() => MainTile(
+  MainData copy() => MainData(
         randomNumber,
         guessNumber,
         counter,

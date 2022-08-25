@@ -3,7 +3,7 @@ import 'package:domain/usecase/generate_number_usecase.dart';
 import 'package:flutter/material.dart';
 import '../base/bloc_dialog.dart';
 import '../base/bloc_screen.dart';
-import '../base/bloc_tile.dart';
+import '../base/bloc_data.dart';
 import 'main_my_bloc.dart';
 
 class MainScreen extends BlocScreen {
@@ -48,7 +48,7 @@ class _MainScreenState extends BlocScreenState<MainScreen, MainBloc> {
         stream: bloc.dataStream,
         builder: (context, snapshot) {
           if (snapshot.data != null) {
-            final data = snapshot.data as BlocTile;
+            final data = snapshot.data as BlocData;
             final blocData = data.data;
             return Scaffold(
               appBar: AppBar(

@@ -4,7 +4,7 @@ import 'package:domain/usecase/check_state_usecase.dart';
 import 'package:flutter/material.dart';
 import 'package:presentation/base/bloc.dart';
 import '../base/bloc_dialog.dart';
-import 'main_tile.dart';
+import 'main_data.dart';
 
 abstract class MainBloc extends Bloc {
   factory MainBloc(
@@ -23,7 +23,7 @@ class MainBlocImpl extends BlocImpl implements MainBloc {
   int number = 0;
   int counter = 0;
   final _editController = TextEditingController();
-  final _tile = MainTile.init();
+  final _screenData = MainData.init();
   final CheckStateUseCase _checkStateUseCase;
   final GenerateNumberUseCase _generateNumberUseCase;
 
@@ -38,10 +38,10 @@ class MainBlocImpl extends BlocImpl implements MainBloc {
   @override
   void initState() {
     super.initState();
-    _updateData(data: _tile);
+    _updateData(data: _screenData);
   }
 
-  _updateData({MainTile? data}) {
+  _updateData({MainData? data}) {
     handleData(
       data: data,
     );
@@ -53,10 +53,10 @@ class MainBlocImpl extends BlocImpl implements MainBloc {
 
   @override
   void generateRandomNumber() {
-    _tile.randomNumber = _generateNumberUseCase();
-    _tile.isDisabled = false;
+    _screenData.randomNumber = _generateNumberUseCase();
+    _screenData.isDisabled = false;
     _updateData(
-      data: _tile,
+      data: _screenData,
     );
   }
 
@@ -64,30 +64,30 @@ class MainBlocImpl extends BlocImpl implements MainBloc {
     number = int.tryParse(_editController.text)!;
     final params = ComparedNumbers(
       guessNumber: number,
-      randomNumber: _tile.randomNumber,
-      counter: _tile.counter,
+      randomNumber: _screenData.randomNumber,
+      counter: _screenData.counter,
     );
     final currentState = _checkStateUseCase(params);
     if (currentState is OutOfAttempts) {
       _showAlert(
-          'Wrong. Attempt №${_tile.counter}. \nYou Out Of Attempts \nPlease, start new game.');
-      _tile.counter = 1;
-      _tile.isDisabled = true;
+          'Wrong. Attempt №${_screenData.counter}. \nYou Out Of Attempts \nPlease, start new game.');
+      _screenData.counter = 1;
+      _screenData.isDisabled = true;
       _updateData(
-        data: _tile,
+        data: _screenData,
       );
     } else if (currentState is YouWon) {
       _showAlert('You Won');
-      _tile.counter = 1;
-      _tile.isDisabled = true;
+      _screenData.counter = 1;
+      _screenData.isDisabled = true;
       _updateData(
-        data: _tile,
+        data: _screenData,
       );
     } else {
-      _showAlert('Wrong.Attempt №${_tile.counter}');
-      _tile.counter++;
+      _showAlert('Wrong. Attempt №${_screenData.counter}');
+      _screenData.counter++;
       _updateData(
-        data: _tile,
+        data: _screenData,
       );
     }
   }

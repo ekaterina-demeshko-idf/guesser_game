@@ -1,15 +1,15 @@
-class BlocTile {
+class BlocData {
   dynamic data;
 
-  BlocTile(
+  BlocData(
     this.data,
   );
 
-  factory BlocTile.init() => BlocTile(
+  factory BlocData.init() => BlocData(
         null,
       );
 
-  BlocTile copy() => BlocTile(
+  BlocData copy() => BlocData(
         data,
       );
 

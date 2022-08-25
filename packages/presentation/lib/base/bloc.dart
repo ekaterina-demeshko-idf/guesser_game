@@ -1,10 +1,10 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'bloc_dialog.dart';
-import 'bloc_tile.dart';
+import 'bloc_data.dart';
 
 abstract class Bloc {
-  Stream<BlocTile> get dataStream;
+  Stream<BlocData> get dataStream;
 
   Stream<DialogEvent> get dialogStream;
 
@@ -12,12 +12,12 @@ abstract class Bloc {
 }
 
 abstract class BlocImpl implements Bloc {
-  final _data = StreamController<BlocTile>();
+  final _data = StreamController<BlocData>();
   final _dialog = StreamController<DialogEvent>();
-  final _blocTile = BlocTile.init();
+  final _blocTile = BlocData.init();
 
   @override
-  Stream<BlocTile> get dataStream => _data.stream;
+  Stream<BlocData> get dataStream => _data.stream;
 
   @override
   Stream<DialogEvent> get dialogStream => _dialog.stream;
