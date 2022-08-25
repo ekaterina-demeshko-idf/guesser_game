@@ -16,7 +16,10 @@ class MainScreen extends BlocScreen {
 class _MainScreenState extends BlocScreenState<MainScreen, MainBloc> {
   _MainScreenState()
       : super(
-          MainBloc(CheckStateUseCase(), GenerateNumberUseCase()),
+          MainBloc(
+            CheckStateUseCase(),
+            GenerateNumberUseCase(),
+          ),
         );
 
   @override
@@ -98,7 +101,7 @@ class _MainScreenState extends BlocScreenState<MainScreen, MainBloc> {
                             width: 30,
                           ),
                           ElevatedButton(
-                            onPressed: () => bloc.generateRandomNumber(),
+                            onPressed: bloc.generateRandomNumber(),
                             child: const Text(
                               'New Game',
                               style: TextStyle(fontSize: 20),

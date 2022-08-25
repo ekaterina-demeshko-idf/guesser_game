@@ -13,9 +13,7 @@ class BlocTile {
         data,
       );
 
-  void updateParams(
-    dynamic data,
-  ) {
+  void updateParams(dynamic data) {
     if (data != null) this.data = data;
   }
 }

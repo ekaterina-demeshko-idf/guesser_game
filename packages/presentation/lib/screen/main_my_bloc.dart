@@ -7,25 +7,33 @@ import '../base/bloc_dialog.dart';
 import 'main_tile.dart';
 
 abstract class MainBloc extends Bloc {
-  factory MainBloc(CheckStateUseCase checkStateUseCase,
-          GenerateNumberUseCase generateNumberUseCase) =>
+  factory MainBloc(
+    CheckStateUseCase checkStateUseCase,
+    GenerateNumberUseCase generateNumberUseCase,
+  ) =>
       MainBlocImpl(checkStateUseCase, generateNumberUseCase);
 
-  void generateRandomNumber();
-
   TextEditingController get editController;
+
+  void generateRandomNumber();
 }
 
 class MainBlocImpl extends BlocImpl implements MainBloc {
-  final _tile = MainTile.init();
-  final _editController = TextEditingController();
-  final CheckStateUseCase _checkStateUseCase;
-  final GenerateNumberUseCase _generateNumberUseCase;
   int randomNumber = 1;
   int number = 0;
   int counter = 0;
+  final _editController = TextEditingController();
+  final _tile = MainTile.init();
+  final CheckStateUseCase _checkStateUseCase;
+  final GenerateNumberUseCase _generateNumberUseCase;
 
-  MainBlocImpl(this._checkStateUseCase, this._generateNumberUseCase);
+  @override
+  TextEditingController get editController => _editController;
+
+  MainBlocImpl(
+    this._checkStateUseCase,
+    this._generateNumberUseCase,
+  );
 
   @override
   void initState() {
@@ -83,7 +91,4 @@ class MainBlocImpl extends BlocImpl implements MainBloc {
       );
     }
   }
-
-  @override
-  TextEditingController get editController => _editController;
 }
