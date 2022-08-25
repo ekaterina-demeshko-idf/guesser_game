@@ -1,9 +1,9 @@
 import 'package:domain/usecase/check_state_usecase.dart';
 import 'package:domain/usecase/generate_number_usecase.dart';
 import 'package:flutter/material.dart';
-import 'base/bloc_dialog.dart';
-import 'base/bloc_screen.dart';
-import 'base/bloc_tile.dart';
+import '../base/bloc_dialog.dart';
+import '../base/bloc_screen.dart';
+import '../base/bloc_tile.dart';
 import 'main_my_bloc.dart';
 
 class MainScreen extends BlocScreen {

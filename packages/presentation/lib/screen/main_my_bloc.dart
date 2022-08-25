@@ -3,7 +3,7 @@ import 'package:domain/usecase/generate_number_usecase.dart';
 import 'package:domain/usecase/check_state_usecase.dart';
 import 'package:flutter/material.dart';
 import 'package:presentation/base/bloc.dart';
-import 'base/bloc_dialog.dart';
+import '../base/bloc_dialog.dart';
 import 'main_tile.dart';
 
 abstract class MainBloc extends Bloc {
