@@ -1,6 +1,7 @@
 import 'package:domain/usecase/check_state_usecase.dart';
 import 'package:domain/usecase/generate_number_usecase.dart';
 import 'package:flutter/material.dart';
+import 'base/bloc_dialog.dart';
 import 'base/bloc_screen.dart';
 import 'base/bloc_tile.dart';
 import 'main_my_bloc.dart';
@@ -17,6 +18,26 @@ class _MainScreenState extends BlocScreenState<MainScreen, MainBloc> {
       : super(
           MainBloc(CheckStateUseCase(), GenerateNumberUseCase()),
         );
+
+  @override
+  void initState() {
+    super.initState();
+    bloc.dialogStream.listen((event) {
+      if (event is GameDialog) {
+        showDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              content: Text(
+                event.message,
+                style: const TextStyle(fontSize: 30),
+              ),
+            );
+          },
+        );
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -65,21 +86,9 @@ class _MainScreenState extends BlocScreenState<MainScreen, MainBloc> {
                           ElevatedButton(
                             onPressed: blocData.isDisabled
                                 ? null
-                                : () => {
-                                      bloc.checkNumber(),
-                                      showDialog(
-                                        context: context,
-                                        builder: (context) {
-                                          return AlertDialog(
-                                            content: Text(
-                                              blocData.result,
-                                              style:
-                                                  const TextStyle(fontSize: 30),
-                                            ),
-                                          );
-                                        },
-                                      )
-                                    },
+                                : () {
+                                    bloc.checkNumber();
+                                  },
                             child: const Text(
                               'Try',
                               style: TextStyle(fontSize: 20),

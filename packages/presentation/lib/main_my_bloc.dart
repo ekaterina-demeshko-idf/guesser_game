@@ -3,6 +3,7 @@ import 'package:domain/usecase/generate_number_usecase.dart';
 import 'package:domain/usecase/check_state_usecase.dart';
 import 'package:flutter/material.dart';
 import 'package:presentation/base/bloc.dart';
+import 'base/bloc_dialog.dart';
 import 'main_tile.dart';
 
 abstract class MainBloc extends Bloc {
@@ -24,7 +25,7 @@ class MainBlocImpl extends BlocImpl implements MainBloc {
   int number = 0;
   int counter = 0;
 
-  MainBlocImpl(this._checkStateUseCase,  this._generateNumberUseCase);
+  MainBlocImpl(this._checkStateUseCase, this._generateNumberUseCase);
 
   @override
   void initState() {
@@ -38,10 +39,13 @@ class MainBlocImpl extends BlocImpl implements MainBloc {
     );
   }
 
+  _showAlert(String message) {
+    showAlert(event: GameDialog(message));
+  }
+
   @override
   void generateRandomNumber() {
     _tile.randomNumber = _generateNumberUseCase();
-    _tile.result = '';
     _tile.isDisabled = false;
     _updateData(
       data: _tile,
@@ -57,22 +61,22 @@ class MainBlocImpl extends BlocImpl implements MainBloc {
     );
     final currentState = _checkStateUseCase(params);
     if (currentState is OutOfAttempts) {
-      _tile.result = 'OutOfAttempts';
-      _tile.counter = 0;
+      _showAlert(
+          'Wrong. Attempt №${_tile.counter}. \nYou Out Of Attempts \nPlease, start new game.');
+      _tile.counter = 1;
       _tile.isDisabled = true;
       _updateData(
         data: _tile,
       );
-    }
-    else if (currentState is YouWon) {
-      _tile.result = 'YouWon';
-      _tile.counter = 0;
+    } else if (currentState is YouWon) {
+      _showAlert('You Won');
+      _tile.counter = 1;
       _tile.isDisabled = true;
       _updateData(
         data: _tile,
       );
     } else {
-      _tile.result = 'Wrong';
+      _showAlert('Wrong.Attempt №${_tile.counter}');
       _tile.counter++;
       _updateData(
         data: _tile,

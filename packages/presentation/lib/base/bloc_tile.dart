@@ -1,5 +1,6 @@
 class BlocTile {
   dynamic data;
+
   BlocTile(
     this.data,
   );
