@@ -11,7 +11,10 @@ abstract class MainBloc extends Bloc {
     CheckStateUseCase checkStateUseCase,
     GenerateNumberUseCase generateNumberUseCase,
   ) =>
-      MainBlocImpl(checkStateUseCase, generateNumberUseCase);
+      MainBlocImpl(
+        checkStateUseCase,
+        generateNumberUseCase,
+      );
 
   TextEditingController get editController;
 
@@ -38,12 +41,12 @@ class MainBlocImpl extends BlocImpl implements MainBloc {
   @override
   void initState() {
     super.initState();
-    _updateData(data: _screenData);
+    _updateData();
   }
 
   _updateData({MainData? data}) {
     handleData(
-      data: data,
+      data: _screenData,
     );
   }
 

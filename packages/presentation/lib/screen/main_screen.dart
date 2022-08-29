@@ -74,7 +74,7 @@ class _MainScreenState extends BlocScreenState<MainScreen, MainBloc> {
                         height: 30,
                       ),
                       Padding(
-                        padding: const EdgeInsets.fromLTRB(90, 0, 90, 0),
+                        padding: const EdgeInsets.symmetric(horizontal: 90),
                         child: TextField(
                           controller: bloc.editController,
                           decoration: const InputDecoration(

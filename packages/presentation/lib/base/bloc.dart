@@ -14,7 +14,7 @@ abstract class Bloc {
 abstract class BlocImpl implements Bloc {
   final _data = StreamController<BlocData>();
   final _dialog = StreamController<DialogEvent>();
-  final _blocTile = BlocData.init();
+  final _blocData = BlocData.init();
 
   @override
   Stream<BlocData> get dataStream => _data.stream;
@@ -24,8 +24,8 @@ abstract class BlocImpl implements Bloc {
 
   @protected
   void handleData({dynamic data}) {
-    _blocTile.updateParams(data);
-    _data.add(_blocTile.copy());
+    _blocData.updateParams(data);
+    _data.add(_blocData.copy());
   }
 
   void showAlert({required GameDialog event}) {
