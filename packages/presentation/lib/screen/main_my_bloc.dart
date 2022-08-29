@@ -76,22 +76,16 @@ class MainBlocImpl extends BlocImpl implements MainBloc {
           'Wrong. Attempt №${_screenData.counter}. \nYou Out Of Attempts \nPlease, start new game.');
       _screenData.counter = 1;
       _screenData.isDisabled = true;
-      _updateData(
-        data: _screenData,
-      );
+      _updateData();
     } else if (currentState is YouWon) {
       _showAlert('You Won');
       _screenData.counter = 1;
       _screenData.isDisabled = true;
-      _updateData(
-        data: _screenData,
-      );
+      _updateData();
     } else {
       _showAlert('Wrong. Attempt №${_screenData.counter}');
       _screenData.counter++;
-      _updateData(
-        data: _screenData,
-      );
+      _updateData();
     }
   }
 }

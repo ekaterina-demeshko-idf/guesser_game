@@ -18,7 +18,7 @@ class ComparedNumbers {
 class CheckStateUseCase implements UseCaseParams<ComparedNumbers, GameState> {
   @override
   GameState call(ComparedNumbers params) {
-    if (params.counter >= maxAttempts) {
+    if (params.counter > maxAttempts) {
       return OutOfAttempts();
     } else {
       if (params.guessNumber == params.randomNumber) {
