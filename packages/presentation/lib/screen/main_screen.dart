@@ -6,7 +6,7 @@ import '../base/bloc_screen.dart';
 import '../base/bloc_data.dart';
 import 'main_my_bloc.dart';
 
-class MainScreen extends BlocScreen {
+class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
 
   @override
@@ -48,12 +48,12 @@ class _MainScreenState extends BlocScreenState<MainScreen, MainBloc> {
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder(
+    return StreamBuilder<BlocData>(
         stream: bloc.dataStream,
         builder: (context, snapshot) {
           if (snapshot.data != null) {
-            final data = snapshot.data as BlocData;
-            final blocData = data.data;
+            final data = snapshot.data;
+            final blocData = data?.data;
             return Scaffold(
               appBar: AppBar(
                 title: const Text('Guess the Number'),

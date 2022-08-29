@@ -2,12 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'bloc.dart';
 
-abstract class BlocScreen extends StatefulWidget {
-  const BlocScreen({Key? key}) : super(key: key);
-}
-
-abstract class BlocScreenState<BS extends BlocScreen, B extends Bloc>
-    extends State<BS> {
+abstract class BlocScreenState<S extends StatefulWidget, B extends Bloc> extends State {
   BlocScreenState(Bloc this.bloc);
 
   @protected
