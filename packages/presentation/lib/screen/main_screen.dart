@@ -27,19 +27,23 @@ class _MainScreenState extends BlocScreenState<MainScreen, MainBloc> {
     super.initState();
     bloc.dialogStream.listen((event) {
       if (event is GameDialog) {
-        showDialog(
-          context: context,
-          builder: (context) {
-            return AlertDialog(
-              content: Text(
-                event.message,
-                style: const TextStyle(fontSize: 30),
-              ),
-            );
-          },
-        );
+          showResultDialog(event);
       }
     });
+  }
+
+  void showResultDialog(event) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          content: Text(
+            event.message,
+            style: const TextStyle(fontSize: 30),
+          ),
+        );
+      },
+    );
   }
 
   @override
