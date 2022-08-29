@@ -51,7 +51,7 @@ class MainBlocImpl extends BlocImpl implements MainBloc {
   }
 
   _showAlert(String message) {
-    showAlert(event: GameDialog(message));
+    showAlert(eventCopy: GameDialog(message));
   }
 
   @override
@@ -73,7 +73,7 @@ class MainBlocImpl extends BlocImpl implements MainBloc {
     final currentState = _checkStateUseCase(params);
     if (currentState is OutOfAttempts) {
       _showAlert(
-          'Wrong. Attempt №${_screenData.counter}. \nYou Out Of Attempts \nPlease, start new game.');
+          'You Out Of Attempts \nPlease, start new game.');
       _screenData.counter = 1;
       _screenData.isDisabled = true;
       _updateData();
