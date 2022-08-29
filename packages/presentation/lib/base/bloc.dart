@@ -28,7 +28,7 @@ abstract class BlocImpl implements Bloc {
     _data.add(_blocTile.copy());
   }
 
-  void showAlert({required DialogEvent event}) {
+  void showAlert({required GameDialog event}) {
     _dialog.add(event);
   }
 

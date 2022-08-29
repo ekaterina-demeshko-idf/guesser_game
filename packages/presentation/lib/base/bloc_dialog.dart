@@ -1,7 +1,7 @@
 abstract class DialogEvent {}
 
 class GameDialog implements DialogEvent {
-  String message = '';
+  String message;
 
   GameDialog(this.message);
 }

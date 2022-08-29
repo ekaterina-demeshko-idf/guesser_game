@@ -11,7 +11,7 @@ abstract class BlocScreenState<BS extends BlocScreen, B extends Bloc>
   BlocScreenState(Bloc this.bloc);
 
   @protected
-  final bloc;
+  final dynamic bloc;
 
   @override
   void initState() {
