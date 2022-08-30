@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'bloc.dart';
 
 abstract class BlocScreenState<S extends StatefulWidget, B extends Bloc> extends State {
-  BlocScreenState(Bloc this.bloc);
+  BlocScreenState(this.bloc);
 
   @protected
-  final dynamic bloc;
+  final B bloc;
 
   @override
   void initState() {
