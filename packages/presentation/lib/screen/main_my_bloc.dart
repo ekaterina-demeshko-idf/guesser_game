@@ -19,6 +19,7 @@ abstract class MainBloc extends Bloc {
   TextEditingController get editController;
 
   void generateRandomNumber();
+
   void checkNumber();
 }
 
@@ -58,6 +59,7 @@ class _MainBlocImpl extends BlocImpl implements MainBloc {
   @override
   void generateRandomNumber() {
     _screenData.randomNumber = _generateNumberUseCase();
+    _screenData.counter = 1;
     _screenData.isDisabled = false;
     _updateData();
   }

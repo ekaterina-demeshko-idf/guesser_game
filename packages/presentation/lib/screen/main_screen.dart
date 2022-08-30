@@ -1,5 +1,5 @@
-import 'package:domain/usecase/check_state_usecase.dart';
-import 'package:domain/usecase/generate_number_usecase.dart';
+// import 'package:domain/usecase/check_state_usecase.dart';
+// import 'package:domain/usecase/generate_number_usecase.dart';
 import 'package:flutter/material.dart';
 import '../base/bloc_dialog.dart';
 import '../base/bloc_screen.dart';
@@ -14,13 +14,13 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends BlocScreenState<MainScreen, MainBloc> {
-  _MainScreenState()
-      : super(
-          MainBloc(
-            CheckStateUseCase(),
-            GenerateNumberUseCase(),
-          ),
-        );
+  // _MainScreenState()
+  //     : super(
+  //         MainBloc(
+  //           CheckStateUseCase(),
+  //           GenerateNumberUseCase(),
+  //         ),
+  //       );
 
   @override
   void initState() {
