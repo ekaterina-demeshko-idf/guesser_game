@@ -44,7 +44,7 @@ class MainBlocImpl extends BlocImpl implements MainBloc {
     _updateData();
   }
 
-  _updateData({MainData? data}) {
+  _updateData() {
     handleData(
       data: _screenData,
     );
@@ -58,9 +58,7 @@ class MainBlocImpl extends BlocImpl implements MainBloc {
   void generateRandomNumber() {
     _screenData.randomNumber = _generateNumberUseCase();
     _screenData.isDisabled = false;
-    _updateData(
-      data: _screenData,
-    );
+    _updateData();
   }
 
   void checkNumber() {
