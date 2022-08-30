@@ -93,9 +93,7 @@ class _MainScreenState extends BlocScreenState<MainScreen, MainBloc> {
                           ElevatedButton(
                             onPressed: blocData.isDisabled
                                 ? null
-                                : () {
-                                    bloc.checkNumber();
-                                  },
+                                : bloc.checkNumber,
                             child: const Text(
                               'Try',
                               style: TextStyle(fontSize: 20),
@@ -105,7 +103,7 @@ class _MainScreenState extends BlocScreenState<MainScreen, MainBloc> {
                             width: 30,
                           ),
                           ElevatedButton(
-                            onPressed: () {bloc.generateRandomNumber();},
+                            onPressed: bloc.generateRandomNumber,
                             child: const Text(
                               'New Game',
                               style: TextStyle(fontSize: 20),

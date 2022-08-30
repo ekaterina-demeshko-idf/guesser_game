@@ -11,7 +11,7 @@ abstract class MainBloc extends Bloc {
     CheckStateUseCase checkStateUseCase,
     GenerateNumberUseCase generateNumberUseCase,
   ) =>
-      MainBlocImpl(
+      _MainBlocImpl(
         checkStateUseCase,
         generateNumberUseCase,
       );
@@ -19,9 +19,10 @@ abstract class MainBloc extends Bloc {
   TextEditingController get editController;
 
   void generateRandomNumber();
+  void checkNumber();
 }
 
-class MainBlocImpl extends BlocImpl implements MainBloc {
+class _MainBlocImpl extends BlocImpl implements MainBloc {
   int randomNumber = 1;
   int number = 0;
   int counter = 0;
@@ -33,7 +34,7 @@ class MainBlocImpl extends BlocImpl implements MainBloc {
   @override
   TextEditingController get editController => _editController;
 
-  MainBlocImpl(
+  _MainBlocImpl(
     this._checkStateUseCase,
     this._generateNumberUseCase,
   );
@@ -61,8 +62,9 @@ class MainBlocImpl extends BlocImpl implements MainBloc {
     _updateData();
   }
 
+  @override
   void checkNumber() {
-    number = int.tryParse(_editController.text)!;
+    number = int.tryParse(_editController.text) ?? 0;
     final params = ComparedNumbers(
       guessNumber: number,
       randomNumber: _screenData.randomNumber,
@@ -70,8 +72,7 @@ class MainBlocImpl extends BlocImpl implements MainBloc {
     );
     final currentState = _checkStateUseCase(params);
     if (currentState is OutOfAttempts) {
-      _showAlert(
-          'You Out Of Attempts \nPlease, start new game.');
+      _showAlert('You Out Of Attempts \nPlease, start new game.');
       _screenData.counter = 1;
       _screenData.isDisabled = true;
       _updateData();
