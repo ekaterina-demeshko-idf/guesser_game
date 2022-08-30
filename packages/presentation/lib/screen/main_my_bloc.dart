@@ -26,9 +26,8 @@ abstract class MainBloc extends Bloc {
 class _MainBlocImpl extends BlocImpl implements MainBloc {
   int randomNumber = 1;
   int number = 0;
-  int counter = 0;
   final _editController = TextEditingController();
-  final _screenData = MainData.init();
+  var _screenData = MainData.init();
   final CheckStateUseCase _checkStateUseCase;
   final GenerateNumberUseCase _generateNumberUseCase;
 
@@ -43,10 +42,10 @@ class _MainBlocImpl extends BlocImpl implements MainBloc {
   @override
   void initState() {
     super.initState();
-    _updateData();
+    _updateData(data: _screenData);
   }
 
-  _updateData() {
+  _updateData({required MainData data}) {
     handleData(
       data: _screenData,
     );
@@ -58,10 +57,12 @@ class _MainBlocImpl extends BlocImpl implements MainBloc {
 
   @override
   void startNewGame() {
-    _screenData.randomNumber = _generateNumberUseCase();
-    _screenData.counter = 1;
-    _screenData.isDisabled = false;
-    _updateData();
+    _screenData = _screenData.copyWith(
+      randomNumber: _generateNumberUseCase(),
+      counter: 0,
+      isDisabled: false,
+    );
+    _updateData(data: _screenData);
   }
 
   @override
@@ -75,18 +76,24 @@ class _MainBlocImpl extends BlocImpl implements MainBloc {
     final currentState = _checkStateUseCase(params);
     if (currentState is OutOfAttempts) {
       _showAlert('You Out Of Attempts \nPlease, start new game.');
-      _screenData.counter = 1;
-      _screenData.isDisabled = true;
-      _updateData();
+      _screenData = _screenData.copyWith(
+        counter: 0,
+        isDisabled: true,
+      );
+      _updateData(data: _screenData);
     } else if (currentState is YouWon) {
       _showAlert('You Won');
-      _screenData.counter = 1;
-      _screenData.isDisabled = true;
-      _updateData();
+      _screenData = _screenData.copyWith(
+        counter: 0,
+        isDisabled: true,
+      );
+      _updateData(data: _screenData);
     } else {
+      _screenData = _screenData.copyWith(
+        counter: _screenData.counter + 1,
+      );
       _showAlert('Wrong. Attempt №${_screenData.counter}');
-      _screenData.counter++;
-      _updateData();
+      _updateData(data: _screenData);
     }
   }
 }

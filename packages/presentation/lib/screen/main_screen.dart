@@ -1,3 +1,5 @@
+// import 'package:domain/usecase/check_state_usecase.dart';
+// import 'package:domain/usecase/generate_number_usecase.dart';
 import 'package:flutter/material.dart';
 import '../base/bloc_dialog.dart';
 import '../base/bloc_screen.dart';
@@ -12,12 +14,20 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends BlocScreenState<MainScreen, MainBloc> {
+  // _MainScreenState()
+  //     : super(
+  //         MainBloc(
+  //           CheckStateUseCase(),
+  //           GenerateNumberUseCase(),
+  //         ),
+  //       );
+
   @override
   void initState() {
     super.initState();
     bloc.dialogStream.listen((event) {
       if (event is GameDialog) {
-        showResultDialog(event);
+          showResultDialog(event);
       }
     });
   }
@@ -81,8 +91,9 @@ class _MainScreenState extends BlocScreenState<MainScreen, MainBloc> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           ElevatedButton(
-                            onPressed:
-                                blocData.isDisabled ? null : bloc.checkNumber,
+                            onPressed: blocData.isDisabled
+                                ? null
+                                : bloc.checkNumber,
                             child: const Text(
                               'Try',
                               style: TextStyle(fontSize: 20),

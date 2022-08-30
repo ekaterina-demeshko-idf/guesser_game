@@ -1,27 +1,47 @@
 class MainData {
-  MainData(
+  final int? randomNumber;
+  final int? guessNumber;
+  final int counter;
+  final bool? isDisabled;
+
+  MainData({
     this.randomNumber,
     this.guessNumber,
-    this.counter,
+    required this.counter,
     this.isDisabled,
-  );
+  });
 
-  int randomNumber;
-  int guessNumber;
-  int counter;
-  bool isDisabled;
-
-  factory MainData.init() => MainData(
-        1,
-        0,
-        1,
-        true,
+  factory MainData.init({
+    randomNumber,
+    guessNumber,
+    counter,
+    isDisabled,
+  }) =>
+      MainData(
+        randomNumber: 1,
+        guessNumber: 0,
+        counter: 1,
+        isDisabled: true,
       );
 
-  MainData copy() => MainData(
-        randomNumber,
-        guessNumber,
-        counter,
-        isDisabled,
+  MainData copy({
+    randomNumber,
+    guessNumber,
+    counter,
+    isDisabled,
+  }) =>
+      MainData(
+        randomNumber: randomNumber,
+        guessNumber: guessNumber,
+        counter: counter,
+        isDisabled: isDisabled,
+      );
+
+  MainData copyWith({randomNumber, guessNumber, counter, isDisabled}) =>
+      MainData(
+        randomNumber: randomNumber ?? this.randomNumber,
+        guessNumber: guessNumber ?? this.guessNumber,
+        counter: counter ?? this.counter,
+        isDisabled: isDisabled ?? this.isDisabled,
       );
 }
