@@ -42,10 +42,10 @@ class _MainBlocImpl extends BlocImpl implements MainBloc {
   @override
   void initState() {
     super.initState();
-    _updateData(data: _screenData);
+    _updateData();
   }
 
-  _updateData({required MainData data}) {
+  _updateData() {
     handleData(
       data: _screenData,
     );
@@ -62,7 +62,7 @@ class _MainBlocImpl extends BlocImpl implements MainBloc {
       counter: 0,
       isDisabled: false,
     );
-    _updateData(data: _screenData);
+    _updateData();
   }
 
   @override
@@ -80,20 +80,20 @@ class _MainBlocImpl extends BlocImpl implements MainBloc {
         counter: 0,
         isDisabled: true,
       );
-      _updateData(data: _screenData);
+      _updateData();
     } else if (currentState is YouWon) {
       _showAlert('You Won');
       _screenData = _screenData.copyWith(
         counter: 0,
         isDisabled: true,
       );
-      _updateData(data: _screenData);
+      _updateData();
     } else {
       _screenData = _screenData.copyWith(
         counter: _screenData.counter + 1,
       );
       _showAlert('Wrong. Attempt №${_screenData.counter}');
-      _updateData(data: _screenData);
+      _updateData();
     }
   }
 }

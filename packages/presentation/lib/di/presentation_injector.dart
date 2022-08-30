@@ -4,11 +4,11 @@ import 'package:get_it/get_it.dart';
 import '../screen/main_my_bloc.dart';
 
 void initPresentationInjector() {
-  _initBlocModule();
+  _initMainScreenModule();
 }
 
-void _initBlocModule() {
-  GetIt.I.registerFactory<MainBloc>(
+void _initMainScreenModule() {
+  GetIt.I.registerFactory(
     () => MainBloc(
       GetIt.I.get<CheckStateUseCase>(),
       GetIt.I.get<GenerateNumberUseCase>(),

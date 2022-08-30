@@ -12,6 +12,7 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends BlocScreenState<MainScreen, MainBloc> {
+
   @override
   void initState() {
     super.initState();
