@@ -51,9 +51,9 @@ class _MainScreenState extends BlocScreenState<MainScreen, MainBloc> {
     return StreamBuilder<BlocData>(
         stream: bloc.dataStream,
         builder: (context, snapshot) {
-          if (snapshot.data != null) {
-            final data = snapshot.data;
-            final blocData = data?.data;
+          final data = snapshot.data;
+          if (data != null) {
+            final blocData = data.data;
             return Scaffold(
               appBar: AppBar(
                 title: const Text('Guess the Number'),
