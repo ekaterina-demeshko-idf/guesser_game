@@ -12,10 +12,10 @@ class MainData {
   });
 
   factory MainData.init({
-    randomNumber,
-    guessNumber,
-    counter,
-    isDisabled,
+    int? randomNumber,
+    int? guessNumber,
+    required int counter,
+    bool? isDisabled,
   }) =>
       MainData(
         randomNumber: 1,
@@ -37,11 +37,11 @@ class MainData {
         isDisabled: isDisabled,
       );
 
-  MainData copyWith({randomNumber, guessNumber, counter, isDisabled}) =>
+  MainData copyWith({int? randomNumber, int? guessNumber, required int counter, bool? isDisabled}) =>
       MainData(
         randomNumber: randomNumber ?? this.randomNumber,
         guessNumber: guessNumber ?? this.guessNumber,
-        counter: counter ?? this.counter,
+        counter: counter,
         isDisabled: isDisabled ?? this.isDisabled,
       );
 }
