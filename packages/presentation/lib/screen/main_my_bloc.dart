@@ -11,29 +11,30 @@ abstract class MainBloc extends Bloc {
     CheckStateUseCase checkStateUseCase,
     GenerateNumberUseCase generateNumberUseCase,
   ) =>
-      MainBlocImpl(
+      _MainBloc(
         checkStateUseCase,
         generateNumberUseCase,
       );
 
   TextEditingController get editController;
 
-  void generateRandomNumber();
+  void startNewGame();
+
+  void checkNumber();
 }
 
-class MainBlocImpl extends BlocImpl implements MainBloc {
+class _MainBloc extends BlocImpl implements MainBloc {
   int randomNumber = 1;
   int number = 0;
-  int counter = 0;
+  var _screenData = MainData.init(counter: 0);
   final _editController = TextEditingController();
-  final _screenData = MainData.init();
   final CheckStateUseCase _checkStateUseCase;
   final GenerateNumberUseCase _generateNumberUseCase;
 
   @override
   TextEditingController get editController => _editController;
 
-  MainBlocImpl(
+  _MainBloc(
     this._checkStateUseCase,
     this._generateNumberUseCase,
   );
@@ -55,34 +56,45 @@ class MainBlocImpl extends BlocImpl implements MainBloc {
   }
 
   @override
-  void generateRandomNumber() {
-    _screenData.randomNumber = _generateNumberUseCase();
-    _screenData.isDisabled = false;
+  void startNewGame() {
+    final int generatedNumber = _generateNumberUseCase();
+    _screenData = _screenData.copyWith(
+      randomNumber: generatedNumber,
+      counter: 0,
+      isDisabled: false,
+    );
     _updateData();
   }
 
+  @override
   void checkNumber() {
-    number = int.tryParse(_editController.text)!;
+    number = int.tryParse(_editController.text) ?? 0;
     final params = ComparedNumbers(
       guessNumber: number,
       randomNumber: _screenData.randomNumber,
       counter: _screenData.counter,
     );
     final currentState = _checkStateUseCase(params);
+
     if (currentState is OutOfAttempts) {
-      _showAlert(
-          'You Out Of Attempts \nPlease, start new game.');
-      _screenData.counter = 1;
-      _screenData.isDisabled = true;
+      _showAlert('You Out Of Attempts \nPlease, start new game.');
+      _screenData = _screenData.copyWith(
+        counter: 0,
+        isDisabled: true,
+      );
       _updateData();
     } else if (currentState is YouWon) {
       _showAlert('You Won');
-      _screenData.counter = 1;
-      _screenData.isDisabled = true;
+      _screenData = _screenData.copyWith(
+        counter: 0,
+        isDisabled: true,
+      );
       _updateData();
     } else {
+      _screenData = _screenData.copyWith(
+        counter: _screenData.counter + 1,
+      );
       _showAlert('Wrong. Attempt №${_screenData.counter}');
-      _screenData.counter++;
       _updateData();
     }
   }
