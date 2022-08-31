@@ -57,8 +57,9 @@ class _MainBloc extends BlocImpl implements MainBloc {
 
   @override
   void startNewGame() {
+    final int generatedNumber = _generateNumberUseCase();
     _screenData = _screenData.copyWith(
-      randomNumber: _generateNumberUseCase(),
+      randomNumber: generatedNumber,
       counter: 0,
       isDisabled: false,
     );
