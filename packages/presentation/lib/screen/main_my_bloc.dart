@@ -5,8 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:presentation/base/bloc.dart';
 import '../base/bloc_dialog.dart';
 import 'main_data.dart';
+import 'package:injectable/injectable.dart';
 
+@injectable
 abstract class MainBloc extends Bloc {
+  @factoryMethod
   factory MainBloc(
     CheckStateUseCase checkStateUseCase,
     GenerateNumberUseCase generateNumberUseCase,

@@ -3,6 +3,6 @@ import 'package:presentation/my_app.dart';
 import 'di/app_injector.dart';
 
 void main() async {
-  await initAppInjector();
+  configureDependencies();
   runApp(const MyApp());
 }

@@ -37,7 +37,11 @@ class MainData {
         isDisabled: isDisabled,
       );
 
-  MainData copyWith({int? randomNumber, int? guessNumber, required int counter, bool? isDisabled}) =>
+  MainData copyWith(
+          {int? randomNumber,
+          int? guessNumber,
+          required int counter,
+          bool? isDisabled}) =>
       MainData(
         randomNumber: randomNumber ?? this.randomNumber,
         guessNumber: guessNumber ?? this.guessNumber,
