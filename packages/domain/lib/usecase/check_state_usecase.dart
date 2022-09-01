@@ -1,5 +1,6 @@
 import 'game_state.dart';
 import 'usecase.dart';
+import 'package:injectable/injectable.dart';
 
 const maxAttempts = 3;
 
@@ -15,6 +16,7 @@ class ComparedNumbers {
   });
 }
 
+@injectable
 class CheckStateUseCase implements UseCaseParams<ComparedNumbers, GameState> {
   @override
   GameState call(ComparedNumbers params) {
