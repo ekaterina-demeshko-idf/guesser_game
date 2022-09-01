@@ -32,7 +32,7 @@ migrate_working_dir/
 .pub/
 /build/
 pubspec.lock
-**_injector.config.dart.
+*_injector.config.dart
 
 
 # Web related
