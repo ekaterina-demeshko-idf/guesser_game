@@ -1,17 +1,6 @@
 import 'package:get_it/get_it.dart';
-import '../usecase/check_state_usecase.dart';
-import '../usecase/generate_number_usecase.dart';
+import 'package:injectable/injectable.dart';
+import 'domain_injector.config.dart';
 
-void initDomainInjector() {
-  _initUseCaseModule();
-}
-
-void _initUseCaseModule() {
-  GetIt.I.registerFactory<CheckStateUseCase>(
-    () => CheckStateUseCase(),
-  );
-
-  GetIt.I.registerFactory<GenerateNumberUseCase>(
-    () => GenerateNumberUseCase(),
-  );
-}
+@InjectableInit()
+void configureDomainDependencies(GetIt getIt) => $initGetIt(getIt);
